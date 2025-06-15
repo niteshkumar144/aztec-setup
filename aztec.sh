@@ -36,18 +36,15 @@ check_error() {
 # ---------- Update & Upgrade ----------
 echo -e "${CYAN}➡️  Updating and Upgrading your system...${NC}"
 sudo apt-get update && sudo apt-get upgrade -y
-check_error
 
 # ---------- Install Node.js ----------
 echo -e "${CYAN}➡️  Installing Node.js 20.x ...${NC}"
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
-check_error
 
 # ---------- Install Essential Packages ----------
 echo -e "${CYAN}➡️  Installing essential packages...${NC}"
 sudo apt-get install -y curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip screen ufw
-check_error
 
 # ---------- Install Docker & Docker Compose ----------
 echo -e "${CYAN}➡️  Installing Docker and Docker Compose...${NC}"
