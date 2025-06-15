@@ -85,7 +85,7 @@ aztec start --node --archiver --sequencer \
   --p2p.p2pIp YOUR_EXTERNAL_IP
 ```
 
-**How to get your external IP:**
+👇 **How to get your external IP:**
 
 ```bash
 curl ifconfig.me
