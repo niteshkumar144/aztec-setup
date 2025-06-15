@@ -81,6 +81,18 @@ aztec start --node --archiver --sequencer \
   --p2p.p2pIp YOUR_EXTERNAL_IP
 ```
 
+## 🗒️ Replace with Your Own
+
+| Placeholder              | What to use                           |
+| ------------------------ | -------------------------------------- |
+| `YOUR_ETH_SEPOLIA_RPC`   | Your own Sepolia RPC URL               |
+| `YOUR_BEACON_SEPOLIA_RPC`| Your Beacon Chain RPC URL               |
+| `0xYOUR_PRIVATE_KEY`     | Your EVM wallet private key (must start with `0x`) |
+| `YOUR_EVM_ADDRESS`       | Your wallet’s address                  |
+| `YOUR_EXTERNAL_IP`       | Your server’s external IP (`curl ifconfig.me`) |
+
+---
+
 👇 **How to get your external IP:**
 
 ```bash
