@@ -51,7 +51,10 @@ Run this command in your terminal:
 curl -s https://raw.githubusercontent.com/niteshkumar144/aztec-setup/main/aztec.sh | bash
 ```
 
-This installs Node.js, Docker, Docker Compose, and the Aztec CLI.
+**➡️ Note: If ask Overwrite? (y/N)   
+✅  Choose y and Press Enter**
+
+**➡️This installs Node.js, Docker, Docker Compose, and the Aztec CLI.**
 
 ---
 
@@ -138,9 +141,9 @@ sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | h
 
 ---
 
-## 🙏 Made with ❤️ by Nitesh Kumar
+## 🙏 Made with ❤️ by Nitesh Kumawat
 
 If this helped, star the repo ⭐ and share with the community.
 
-Happy Sequencing! 🚀✨
+Thank You ❤️ & Jai Hind Vande Matram! 🇮🇳
 
