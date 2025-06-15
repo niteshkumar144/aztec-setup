@@ -40,8 +40,7 @@ You need a small balance to run the sequencer. Get free test ETH from:
 - [Chainlink Faucet](https://faucets.chain.link/sepolia)
 - [QuickNode Faucet](https://faucet.quicknode.com/ethereum/sepolia)
 
-✅ You can now create your own spolia and beacon rpc using the guide below 👇
-
+✅ You can now create your own Sepolia and Beacon RPC using the guide below 👇
 - https://github.com/niteshkumar144/rpc-setup
 
 5️⃣ **Wallet Address & Private Key**\
