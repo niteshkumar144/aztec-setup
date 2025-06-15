@@ -1,6 +1,6 @@
 # Aztec Sequencer Node Setup 🚀
 
-A step-by-step, beginner-friendly guide to run your **Aztec Sequencer Node**, written by **Nitesh Kumar**.
+A step-by-step, beginner-friendly guide to run your **Aztec Sequencer Node**, written by **Nitesh Kumawat**.
 
 ---
 
