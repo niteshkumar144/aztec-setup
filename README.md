@@ -31,12 +31,18 @@ Get free RPC endpoints from trusted sites:
 - [Infura](https://www.infura.io/)
 - [QuickNode](https://www.quicknode.com/)
 
+
+
 4️⃣ **Sepolia Test ETH**\
 You need a small balance to run the sequencer. Get free test ETH from:
 
 - [Alchemy Sepolia Faucet](https://www.alchemy.com/faucets/ethereum-sepolia)
 - [Chainlink Faucet](https://faucets.chain.link/sepolia)
 - [QuickNode Faucet](https://faucet.quicknode.com/ethereum/sepolia)
+
+✅ You can now create your own spolia and beacon rpc using the guide below 👇
+
+- https://github.com/niteshkumar144/rpc-setup
 
 5️⃣ **Wallet Address & Private Key**\
 Use a test wallet only. Never use your main wallet key!
