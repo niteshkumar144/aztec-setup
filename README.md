@@ -65,10 +65,6 @@ screen -S aztec
 
 **Why?** This keeps your node running even if you close your terminal.
 
-**Detach:** Press `CTRL + A`, then `D`
-
-**Reattach:** Run `screen -r aztec`
-
 ---
 
 ## 🚀 Run Your Aztec Sequencer Node
