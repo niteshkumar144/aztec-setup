@@ -61,23 +61,19 @@ sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s http
 # Verify Docker Installation
 
 docker --version && docker-compose --version
-check_error
 
 # ---------- Install Aztec CLI ----------
 echo -e "${CYAN}➡️  Installing Aztec CLI...${NC}"
 bash -i <(curl -s https://install.aztec.network)
-check_error
 
 echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 
 aztec -h
-check_error
 
 # ---------- Set Aztec Latest Version ----------
 echo -e "${CYAN}➡️  Setting Aztec to latest version for testnet...${NC}"
 aztec-up latest
-check_error
 
 # ---------- Finished ----------
 echo -e "${GREEN}✅ ALL DONE! Your system is ready for Aztec Sequencer Node.${NC}"
