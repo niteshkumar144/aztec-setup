@@ -51,9 +51,19 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update && sudo apt install -y docker-ce
 
-# Force start Docker and enable at boot
+# Enable and start Docker
 sudo systemctl enable docker
 sudo systemctl start docker
+
+# Wait for Docker to be ready
+echo "-------------------------------"
+echo " Checking if Docker daemon is running..."
+echo "-------------------------------"
+while ! docker info > /dev/null 2>&1; do
+  echo "⏳ Waiting for Docker to start..."
+  sleep 2
+done
+echo "✅ Docker is running!"
 
 # Add current user to docker group
 sudo usermod -aG docker $USER
@@ -68,7 +78,6 @@ echo "-------------------------------"
 echo " Installing Aztec CLI..."
 echo "-------------------------------"
 
-# Fresh install Aztec CLI
 bash -i <(curl -s https://install.aztec.network)
 
 echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
