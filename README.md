@@ -61,12 +61,9 @@ curl -s https://raw.githubusercontent.com/niteshkumar144/aztec-setup/main/aztec.
 
 ---
 
-## 📡 Start a Screen Session
-
-Run:
-
+## 📡 1️⃣ Reload shell and Create a screen session (Important for Docker permission):
 ```bash
-screen -S aztec
+exec $SHELL && screen -S aztec
 ```
 
 **Why?** This keeps your node running even if you close your terminal.
