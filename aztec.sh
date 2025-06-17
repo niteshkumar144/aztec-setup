@@ -75,7 +75,7 @@ aztec-up latest
 echo -e "${CYAN}➡️  Configuring UFW firewall rules...${NC}"
 sudo ufw allow 22
 sudo ufw allow ssh
-sudo ufw enable
+echo "y" | sudo ufw enable
 
 sudo ufw allow 40400
 sudo ufw allow 8080
