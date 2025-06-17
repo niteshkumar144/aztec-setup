@@ -25,14 +25,6 @@ echo -e "${CYAN}============================================================"
 echo -e "${CYAN}         🚀 Aztec Sequencer Node Auto Setup by NITESH 🚀"
 echo -e "${CYAN}============================================================${NC}"
 
-# ---------- Functions ----------
-check_error() {
-  if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Error occurred. Exiting...${NC}"
-    exit 1
-  fi
-}
-
 # ---------- Update & Upgrade ----------
 echo -e "${CYAN}➡️  Updating and Upgrading your system...${NC}"
 sudo apt-get update && sudo apt-get upgrade -y
@@ -51,27 +43,38 @@ echo -e "${CYAN}➡️  Installing Docker and Docker Compose...${NC}"
 sudo apt update && sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update && sudo apt install -y docker-ce && sudo systemctl enable --now docker
-sudo usermod -aG docker $USER && newgrp docker
-sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
+sudo apt update && sudo apt install -y docker-ce
+sudo systemctl enable --now docker
 
-# Verify Docker Installation
+# Add user to docker group
+sudo usermod -aG docker $USER
+
+# ---------- Run rest inside new docker group ----------
+echo -e "${CYAN}➡️  Switching to docker group to finish setup...${NC}"
+
+newgrp docker <<EONG
+
+# Install Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/\$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-\$(uname -s)-\$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Verify Docker
 docker --version && docker-compose --version
 
-# ---------- Install Aztec CLI ----------
+# Install Aztec CLI
 echo -e "${CYAN}➡️  Installing Aztec CLI...${NC}"
 bash -i <(curl -s https://install.aztec.network)
 
-echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
+echo 'export PATH="\$HOME/.aztec/bin:\$PATH"' >> \$HOME/.bashrc
+source \$HOME/.bashrc
 
 aztec -h
 
-# ---------- Set Aztec Latest Version ----------
+# Set Aztec to latest version
 echo -e "${CYAN}➡️  Setting Aztec to latest version for testnet...${NC}"
 aztec-up latest
 
-# ---------- Allow Firewall Ports ----------
+# UFW Firewall
 echo -e "${CYAN}➡️  Configuring UFW firewall rules...${NC}"
 sudo ufw allow 22
 sudo ufw allow ssh
@@ -80,23 +83,24 @@ echo "y" | sudo ufw enable
 sudo ufw allow 40400
 sudo ufw allow 8080
 
-# ---------- Finished ----------
-echo -e "${GREEN}✅ ALL DONE! Your system is ready for Aztec Sequencer Node.${NC}"
+# Done
+echo -e "${GREEN}✅ ALL DONE! Aztec Sequencer Node ready.${NC}"
 echo -e "${CYAN}============================================================${NC}"
 echo -e "${WHITE}💡 NEXT STEPS:"
 echo -e "1️⃣  Create a screen session: ${GREEN}screen -S aztec${NC}"
 echo -e "2️⃣  Start your node (replace values!):"
 echo -e ""
-echo -e "${ORANGE}aztec start --node --archiver --sequencer \\"
-echo -e "  --network alpha-testnet \\"
-echo -e "  --l1-rpc-urls YOUR_ETH_SEPOLIA_RPC \\"
-echo -e "  --l1-consensus-host-urls YOUR_BEACON_SEPOLIA_RPC \\"
-echo -e "  --sequencer.validatorPrivateKey 0xYOUR_PRIVATE_KEY \\"
-echo -e "  --sequencer.coinbase YOUR_EVM_ADDRESS \\"
+echo -e "${ORANGE}aztec start --node --archiver --sequencer \\\\"
+echo -e "  --network alpha-testnet \\\\"
+echo -e "  --l1-rpc-urls YOUR_ETH_SEPOLIA_RPC \\\\"
+echo -e "  --l1-consensus-host-urls YOUR_BEACON_SEPOLIA_RPC \\\\"
+echo -e "  --sequencer.validatorPrivateKey 0xYOUR_PRIVATE_KEY \\\\"
+echo -e "  --sequencer.coinbase YOUR_EVM_ADDRESS \\\\"
 echo -e "  --p2p.p2pIp YOUR_EXTERNAL_IP${NC}"
 echo -e ""
-echo -e "${WHITE}3️⃣  Get your External IP: ${GREEN}curl ifconfig.me${NC}"
-echo -e "${WHITE}4️⃣  To detach screen: ${GREEN}Ctrl + A then D${NC}"
-echo -e "${WHITE}5️⃣  To reattach screen: ${GREEN}screen -r aztec${NC}"
+echo -e "${WHITE}3️⃣  To detach screen: ${GREEN}Ctrl + A then D${NC}"
+echo -e "${WHITE}4️⃣  To reattach screen: ${GREEN}screen -r aztec${NC}"
 echo -e "${CYAN}============================================================${NC}"
 echo -e "${GREEN}🚀 Happy Node Running! - NITESH${NC}"
+
+EONG
