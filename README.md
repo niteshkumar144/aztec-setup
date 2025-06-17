@@ -8,7 +8,7 @@ A step-by-step, beginner-friendly guide to run your **Aztec Sequencer Node**, wr
 
 - **OS:** Ubuntu 20.04 or newer (VPS recommended)
 - **CPU:** 4 cores minimum
-- **RAM:** 8GB minimum
+- **RAM:** 16 GB minimum
 - **Disk:** 100GB SSD recommended
 - **Network:** Stable internet connection
 
@@ -61,9 +61,12 @@ curl -s https://raw.githubusercontent.com/niteshkumar144/aztec-setup/main/aztec.
 
 ---
 
-## 📡 1️⃣ Reload shell and Create a screen session (Important for Docker permission):
+### ⚠️  IMPORTANT: Please LOGOUT from this session and LOGIN again  ( Close VPS and Open Again )
+   ✅  ( This ensures Docker permissions apply correctly! )
+
+## 📡 1️⃣ Create a screen session
 ```bash
-exec $SHELL && screen -S aztec
+screen -S aztec
 ```
 
 **Why?** This keeps your node running even if you close your terminal.
@@ -146,4 +149,6 @@ sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | h
 If this helped, star the repo ⭐ and share with the community.
 
 Thank You ❤️ & Jai Hind Vande Matram! 🇮🇳
+
+[𝗙𝗼𝗹𝗹𝗼𝘄 𝗺𝗲╰┈➤](x.com/Nitesh_Kumar177)
 
