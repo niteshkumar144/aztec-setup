@@ -56,7 +56,6 @@ sudo usermod -aG docker $USER && newgrp docker
 sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 
 # Verify Docker Installation
-
 docker --version && docker-compose --version
 
 # ---------- Install Aztec CLI ----------
@@ -71,6 +70,15 @@ aztec -h
 # ---------- Set Aztec Latest Version ----------
 echo -e "${CYAN}➡️  Setting Aztec to latest version for testnet...${NC}"
 aztec-up latest
+
+# ---------- Allow Firewall Ports ----------
+echo -e "${CYAN}➡️  Configuring UFW firewall rules...${NC}"
+sudo ufw allow 22
+sudo ufw allow ssh
+sudo ufw enable
+
+sudo ufw allow 40400
+sudo ufw allow 8080
 
 # ---------- Finished ----------
 echo -e "${GREEN}✅ ALL DONE! Your system is ready for Aztec Sequencer Node.${NC}"
